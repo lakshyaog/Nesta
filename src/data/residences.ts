@@ -19,6 +19,9 @@ export const RESIDENCES: Residence[] = [
     description:
       "Nestaliving's Newton Court offers a unique independent co-living experience for boys and girls at Jagat Farm, far surpassing any regular PG. This fully-furnished residence is more like a second home where all your needs are effortlessly met, from housekeeping to wifi.",
     mapQuery: "Jagat Farm, Greater Noida",
+    image: "/nestaliving-newton-court-1.jpeg",
+    video: "/nestaliving-newton-court-video.mp4",
+    gallery: [1, 2, 3, 4].map((n) => `/nestaliving-newton-court-${n}.jpeg`),
   },
   {
     slug: "tesla-house",
@@ -28,6 +31,10 @@ export const RESIDENCES: Residence[] = [
     description:
       "Nestaliving's Tesla House offers a unique living experience for boys at Alpha 2, far surpassing any regular PG. This fully-furnished residence is more like a second home where all your needs are effortlessly met, from housekeeping to wifi.",
     mapQuery: "Alpha 2, Greater Noida",
+    image: "/nestaliving-tesla-house-alpha-2-1.jpeg",
+    gallery: [1, 2, 3, 4, 5, 6, 7, 8].map(
+      (n) => `/nestaliving-tesla-house-alpha-2-${n}.jpeg`,
+    ),
   },
   {
     slug: "sarojini-house-alpha-1",
@@ -39,7 +46,7 @@ export const RESIDENCES: Residence[] = [
     mapQuery: "Alpha 1, Greater Noida",
     image: "/nestaliving-sarojini-house-1.jpeg",
     video: "/nestaliving-sarojini-house-video.mp4",
-    gallery: [1, 2, 3, 4, 5, 6, 7].map(
+    gallery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
       (n) => `/nestaliving-sarojini-house-${n}.jpeg`,
     ),
   },

@@ -25,6 +25,7 @@ export function VideoPreview({
             alt=""
             aria-hidden="true"
             fill
+            quality={50}
             sizes="1100px"
             className="-z-20 scale-110 object-cover opacity-25 blur-2xl"
           />
@@ -60,14 +61,24 @@ export function VideoPreview({
           <div className="relative mx-auto w-full max-w-[17rem] rotate-3 transition-transform duration-500 hover:rotate-0">
             <div className="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-neon/40 to-brand-blue/40 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2.5rem] border-[6px] border-ink bg-black shadow-2xl ring-1 ring-white/20">
+              {/* Optimised still shown until the video plays (a raw poster= would download the full-size photo) */}
+              {poster && (
+                <Image
+                  src={poster}
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  sizes="272px"
+                  className="object-cover"
+                />
+              )}
               <video
                 ref={videoRef}
-                className="aspect-[9/16] w-full object-cover"
+                className="relative aspect-[9/16] w-full object-cover"
                 src={src}
-                poster={poster}
                 controls={playing}
                 playsInline
-                preload="metadata"
+                preload="none"
                 onPlay={() => setPlaying(true)}
                 onPause={() => setPlaying(false)}
                 onEnded={() => setPlaying(false)}

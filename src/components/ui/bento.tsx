@@ -1,7 +1,7 @@
 "use client";
 
 import { clsx } from "clsx";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 type BentoCardProps = {
   className?: string;
@@ -23,7 +23,7 @@ export function BentoCard({
   fade = ["bottom"],
 }: BentoCardProps) {
   return (
-    <motion.div
+    <m.div
       initial="idle"
       whileHover="active"
       variants={{ idle: {}, active: {} }}
@@ -36,13 +36,13 @@ export function BentoCard({
     >
       {graphic && (
       <div className="relative h-72 shrink-0 overflow-hidden">
-        <motion.div
+        <m.div
           className="absolute inset-0"
           variants={{ idle: { scale: 1 }, active: { scale: 1.06 } }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           {graphic}
-        </motion.div>
+        </m.div>
         {fade.includes("top") && (
           <div className="absolute inset-0 bg-gradient-to-b from-panel to-transparent to-50%" />
         )}
@@ -69,6 +69,6 @@ export function BentoCard({
         </p>
         {actions && <div className="mt-auto pt-6">{actions}</div>}
       </div>
-    </motion.div>
+    </m.div>
   );
 }

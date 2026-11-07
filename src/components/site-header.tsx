@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NAV } from "./site-nav";
+import { MobileNav } from "./mobile-nav";
+import { BookVisitButton } from "./message-modal";
 
 export function SiteHeader() {
   return (
@@ -27,12 +29,10 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link
-          href="/contact"
-          className="rounded-full bg-blue-deep px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink"
-        >
+        <BookVisitButton className="hidden rounded-full bg-blue-deep px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink sm:inline-block">
           Book a visit →
-        </Link>
+        </BookVisitButton>
+        <MobileNav />
       </div>
     </header>
   );

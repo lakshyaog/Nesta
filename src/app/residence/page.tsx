@@ -48,6 +48,7 @@ export default function Home() {
                     alt={r.name}
                     sizes="(min-width: 1024px) 33vw, 100vw"
                     imageClassName="object-cover object-[50%_62%]"
+                    priority
                   />
                 ) : r.image ? (
 
@@ -56,6 +57,7 @@ export default function Home() {
                     alt={r.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
+                    priority
                     className="object-cover object-[50%_62%]"
                   />
                 ) : undefined

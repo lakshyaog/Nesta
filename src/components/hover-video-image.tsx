@@ -14,12 +14,14 @@ export function HoverVideoImage({
   alt,
   sizes,
   imageClassName = "object-cover",
+  priority = false,
 }: {
   image: string;
   video: string;
   alt: string;
   sizes?: string;
   imageClassName?: string;
+  priority?: boolean;
 }) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +48,14 @@ export function HoverVideoImage({
 
   return (
     <>
-      <Image src={image} alt={alt} fill sizes={sizes} className={imageClassName} />
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className={imageClassName}
+      />
       <div
         ref={overlayRef}
         aria-hidden="true"
@@ -54,20 +63,18 @@ export function HoverVideoImage({
       >
         <video
           src={video}
-          poster={image}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 h-full w-full scale-125 object-cover opacity-60 blur-2xl"
         />
         <video
           src={video}
-          poster={image}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 h-full w-full object-contain"
         />
       </div>

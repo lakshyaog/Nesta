@@ -2,17 +2,23 @@
 
 import { useMemo, useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import dims from "@/data/image-dims.json";
+import { m, useScroll, useSpring, useTransform } from "framer-motion";
 
 function ImageCard({ src, alt }: { src: string; alt: string }) {
+  // Real width/height reserve the tile's space before the photo loads, so the
+  // columns don't jump around. The photo still shows at its natural shape.
+  const [width, height] =
+    (dims as Record<string, number[]>)[src] ?? [1350, 1800];
   return (
-    <div className="relative h-[200px] w-full flex-shrink-0 cursor-pointer overflow-hidden bg-[#111] transition-transform duration-300 will-change-transform backface-hidden hover:scale-[1.02] sm:h-[300px] md:h-[400px]">
+    <div className="w-full flex-shrink-0 cursor-pointer overflow-hidden bg-panel transition-transform duration-300 will-change-transform backface-hidden hover:scale-[1.02]">
       <Image
         src={src}
         alt={alt}
-        fill
-        sizes="(min-width: 768px) 25vw, 50vw"
-        className="object-cover opacity-80 transition-opacity duration-300 hover:opacity-100"
+        width={width}
+        height={height}
+        sizes="(min-width: 768px) 25vw, 200px"
+        className="h-auto w-full opacity-100 transition-opacity duration-300 md:opacity-85 md:hover:opacity-100"
       />
     </div>
   );
@@ -73,7 +79,7 @@ export default function Component({
       className="relative h-[300vh] w-full overflow-x-clip bg-background text-white"
     >
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        <motion.div
+        <m.div
           style={{
             width: bannerWidth,
             height: bannerHeight,
@@ -88,10 +94,10 @@ export default function Component({
             style={{ perspective: "1000px" }}
           >
             {/* Edge shading */}
-            <div className="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(0,0,0,1),inset_0_-100px_150px_-50px_rgba(0,0,0,1)]" />
-            <div className="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]" />
+            <div className="absolute inset-0 z-20 shadow-[inset_0_30px_50px_-30px_rgba(0,0,0,0.6),inset_0_-30px_50px_-30px_rgba(0,0,0,0.6)] md:shadow-[inset_0_100px_150px_-50px_rgba(0,0,0,1),inset_0_-100px_150px_-50px_rgba(0,0,0,1)]" />
+            <div className="absolute inset-0 z-20 shadow-[inset_30px_0_50px_-30px_rgba(0,0,0,0.6),inset_-30px_0_50px_-30px_rgba(0,0,0,0.6)] md:shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]" />
 
-            <motion.div
+            <m.div
               style={{
                 rotateX,
                 rotateY,
@@ -102,7 +108,7 @@ export default function Component({
               className="flex h-[150vh] w-[120vw] origin-center items-center justify-center gap-4 will-change-transform backface-hidden md:gap-6"
             >
               {columns.map((col, c) => (
-                <motion.div
+                <m.div
                   key={c}
                   style={{ y: yCols[c] }}
                   className="pointer-events-auto flex w-[22vw] min-w-[200px] flex-col gap-4 md:gap-6"
@@ -114,11 +120,11 @@ export default function Component({
                       alt={`${altPrefix} ${c + 1}.${i + 1}`}
                     />
                   ))}
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

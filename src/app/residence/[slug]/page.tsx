@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -5,6 +6,7 @@ import { RESIDENCES } from "@/data/residences";
 import ParallaxGallery from "@/components/ui/3d-parallax-unfurling-gallery";
 import { VideoPreview } from "@/components/video-preview";
 import { Amenities } from "@/components/amenities";
+import { BookVisitButton } from "@/components/message-modal";
 import { CallbackForm } from "@/components/callback-form";
 
 export function generateStaticParams() {
@@ -19,9 +21,28 @@ export async function generateMetadata({
   return { title: r ? `${r.name}` : "Residence not found" };
 }
 
-export default async function ResidencePage({
+export default function ResidencePage({
   params,
 }: PageProps<"/residence/[slug]">) {
+  return (
+    <Suspense
+      fallback={
+        <div
+          className="min-h-[100vh] flex-1 animate-pulse bg-gradient-to-br from-blue-deep/40 via-ink to-background"
+          aria-busy="true"
+        />
+      }
+    >
+      <ResidenceContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ResidenceContent({
+  params,
+}: {
+  params: PageProps<"/residence/[slug]">["params"];
+}) {
   const { slug } = await params;
   const r = RESIDENCES.find((x) => x.slug === slug);
   if (!r) notFound();
@@ -59,12 +80,9 @@ export default async function ResidencePage({
             </h1>
             <p className="mt-3 text-lg text-white/75">{r.location}</p>
             <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold">
-              <a
-                href="#callback"
-                className="rounded-full bg-neon px-5 py-2.5 text-ink transition-colors hover:bg-white"
-              >
+              <BookVisitButton className="rounded-full bg-neon px-5 py-2.5 text-ink transition-colors hover:bg-white">
                 Schedule a visit →
-              </a>
+              </BookVisitButton>
               <Link
                 href="/contact"
                 className="rounded-full border border-neon px-5 py-2.5 text-neon transition-colors hover:bg-neon hover:text-ink"

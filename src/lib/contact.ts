@@ -7,3 +7,6 @@ export function whatsappLink(message: string) {
 
 export const EMAIL = "nestalivingofficial@gmail.com";
 export const PHONE_DISPLAY = "+91 84098 58321";
+
+export const INSTAGRAM_URL = "https://www.instagram.com/nestaliving.official";
+export const INSTAGRAM_HANDLE = "@nestaliving.official";

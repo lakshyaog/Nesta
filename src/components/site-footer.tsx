@@ -1,8 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BookVisitButton } from "./message-modal";
+import { GmailLogo, InstagramLogo, WhatsAppLogo } from "./brand-icons";
 import { NAV } from "./site-nav";
 import { RESIDENCES } from "@/data/residences";
-import { EMAIL, PHONE_DISPLAY, whatsappLink } from "@/lib/contact";
+import {
+  EMAIL,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  PHONE_DISPLAY,
+  whatsappLink,
+} from "@/lib/contact";
 
 const heading =
   "font-mono text-xs font-medium uppercase tracking-[0.2em] text-ink/50";
@@ -60,7 +68,11 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm text-ink/80">
             <li>
               <span className="block text-xs text-ink/50">Queries</span>
-              <a href={`mailto:${EMAIL}`} className={`font-medium ${link}`}>
+              <a
+                href={`mailto:${EMAIL}`}
+                className={`inline-flex items-center gap-2 font-medium ${link}`}
+              >
+                <GmailLogo className="h-5 w-5" />
                 {EMAIL}
               </a>
             </li>
@@ -70,18 +82,28 @@ export function SiteFooter() {
                 href={whatsappLink("Hi, I have a query about Nestaliving.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`font-medium ${link}`}
+                className={`inline-flex items-center gap-2 font-medium ${link}`}
               >
+                <WhatsAppLogo className="h-5 w-5" />
                 {PHONE_DISPLAY}
               </a>
             </li>
+            <li>
+              <span className="block text-xs text-ink/50">Instagram</span>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 font-medium ${link}`}
+              >
+                <InstagramLogo className="h-5 w-5" />
+                {INSTAGRAM_HANDLE}
+              </a>
+            </li>
           </ul>
-          <Link
-            href="/contact"
-            className="mt-5 inline-block rounded-full bg-blue-deep px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink"
-          >
+          <BookVisitButton className="mt-5 inline-block rounded-full bg-blue-deep px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink">
             Book a visit →
-          </Link>
+          </BookVisitButton>
         </div>
       </div>
 
