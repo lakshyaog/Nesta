@@ -14,7 +14,11 @@ import { BookVisitButton } from "@/components/message-modal";
 import { HoverExpand, type ExpandImage } from "@/components/ui/expand-on-hover";
 import { EMAIL, whatsappLink } from "@/lib/contact";
 
-export const metadata = { title: "About - Nestaliving" };
+export const metadata = {
+  title: "About",
+  description:
+    "Comfortable, fully furnished PG stays at Jagat Farm and Alpha. Learn about Nestaliving and our residences.",
+};
 
 const label =
   "font-mono text-xs font-medium uppercase tracking-[0.2em] text-neon";

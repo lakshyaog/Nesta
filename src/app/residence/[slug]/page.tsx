@@ -18,7 +18,14 @@ export async function generateMetadata({
 }: PageProps<"/residence/[slug]">) {
   const { slug } = await params;
   const r = RESIDENCES.find((x) => x.slug === slug);
-  return { title: r ? `${r.name}` : "Residence not found" };
+  if (!r) return { title: "Residence not found" };
+  return {
+    title: { absolute: r.name },
+    description: r.description,
+    openGraph: r.image
+      ? { title: r.name, description: r.description, images: [r.image] }
+      : undefined,
+  };
 }
 
 export default function ResidencePage({
