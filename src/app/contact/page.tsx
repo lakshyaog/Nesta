@@ -25,7 +25,11 @@ import {
   whatsappLink,
 } from "@/lib/contact";
 
-export const metadata = { title: "Contact - Nestaliving" };
+export const metadata = {
+  title: "Contact",
+  description:
+    "Enquire or book a visit at Nestaliving. Message us on WhatsApp, email, or Instagram.",
+};
 
 const label =
   "font-mono text-xs font-medium uppercase tracking-[0.2em] text-neon";
