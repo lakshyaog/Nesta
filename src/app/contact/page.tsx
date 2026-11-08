@@ -233,7 +233,7 @@ export default function Contact() {
           {RESIDENCES.map((r) => (
             <article
               key={r.slug}
-              className="group overflow-hidden rounded-3xl border border-brand-blue/25 bg-panel transition-all duration-300 hover:-translate-y-1 hover:border-neon/50"
+              className="group relative overflow-hidden rounded-3xl border border-brand-blue/25 bg-panel transition-all duration-300 hover:-translate-y-1 hover:border-neon/50"
             >
               {r.image && (
                 <div className="relative aspect-[4/3] overflow-hidden">
@@ -263,13 +263,13 @@ export default function Contact() {
                     href={mapsLink(r.mapQuery)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-neon hover:underline"
+                    className="relative z-10 inline-flex items-center gap-1 text-neon hover:underline"
                   >
                     Open in Maps <ArrowUpRight className="h-4 w-4" />
                   </a>
                   <Link
                     href={`/residence/${r.slug}`}
-                    className="text-white/80 hover:text-white hover:underline"
+                    className="text-white/80 after:absolute after:inset-0 after:z-0 after:content-[''] hover:text-white hover:underline"
                   >
                     View details
                   </Link>

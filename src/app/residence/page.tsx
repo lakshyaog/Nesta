@@ -25,6 +25,8 @@ export default function Home() {
             <BentoCard
               key={r.name}
               className="lg:col-span-2"
+              href={`/residence/${r.slug}`}
+              hrefLabel={`View ${r.name}`}
               eyebrow={r.tags.join(" · ")}
               title={r.name}
               description={
